@@ -1,0 +1,160 @@
+<div class="container ">
+<mat-card class="mt-3">
+    <mat-card-title class="text-center bg-primary text-white mb-5 pt-2 pb-2">SIGN UP</mat-card-title>
+   
+    <div class="container ">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+       <!--firstname-->
+      <div class="row">
+        <div class="form-group col">
+          <label>First Name :</label>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+           <mat-form-field appearance="fill">
+            <mat-label>Enter your First Name</mat-label>
+           
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <input matInput  formControlName="firstname" required>
+            <mat-error *ngIf="registerForm.controls.firstname.touched && registerForm.controls.firstname.invalid">
+              <span *ngIf="registerForm.controls.firstname.errors.required">This field is mandatory.</span>
+            </mat-error>
+        </mat-form-field>  
+      </div> 
+      
+      <!--lastname-->
+      <div class="form-group col">
+        <label>Last Name:</label>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your Last Name</mat-label>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <input matInput  formControlName="lastname" required>
+            <mat-error *ngIf="registerForm.controls.lastname.touched && registerForm.controls.lastname.invalid">
+              <span *ngIf="registerForm.controls.lastname.errors.required">This field is mandatory.</span>
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+        
+    <!--birthdate-->
+    <div class="row">
+      <div class="form-group col-6">
+        <label>Date Of Birth :</label>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill" class="example-form-field">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="dateofbirth">
+
+            <mat-datepicker-toggle matSuffix ></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+
+            <mat-error *ngIf="registerForm.controls.dateofbirth.touched && registerForm.controls.dateofbirth.invalid">
+              <span *ngIf="registerForm.controls.dateofbirth.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+         <!--Gender-->
+        <div class="form-group col">
+          <label>Gender :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-radio-group >
+            <mat-radio-button value="male">Male</mat-radio-button>
+            &nbsp;&nbsp;
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+       <!--phone number-->
+      <div class="row ">
+        <div class="form-group col">
+          <label>Phone Number :</label>
+          &nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+              <mat-label >Phone number</mat-label>
+              <mat-icon matSuffix>phone</mat-icon>
+              <input matInput  formControlName="phonenumber" required>
+              <mat-error *ngIf="registerForm.controls.phonenumber.touched && registerForm.controls.phonenumber.invalid">
+                <span *ngIf="registerForm.controls.phonenumber.errors.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+           <!--email-->
+          <div class="form-group col">
+          <label>Email :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <mat-icon matSuffix>mail</mat-icon>
+          <input matInput placeholder="pat@example.com" formControlName="email" required>
+          <mat-error *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+            <span *ngIf="registerForm.controls.email.errors.required">This field is mandatory.</span>
+            <span *ngIf="registerForm.controls.email.errors.email">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+      
+      <!--password-->
+     <div class="row ">
+      <div class="form-group col">
+        <label>Password :</label>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Password</mat-label>
+            <input matInput formControlName="password" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+              <span *ngIf="registerForm.controls.password.errors.required">This field is mandatory.</span>
+            </mat-error>
+            
+        </mat-form-field>
+        </div>
+
+        <!--confirm password-->
+        <div class="form-group col">
+        <label>Confirm Password :</label>
+        &nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput formControlName="confirmpassword" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.invalid">
+              <span *ngIf="registerForm.controls.confirmpassword.errors.required">This field is mandatory.</span>
+            </mat-error>
+            
+        </mat-form-field>
+      </div>
+      </div>
+        
+      <!--Accept terms and conditions-->
+    
+        <div class="text-center">
+           <mat-checkbox class="example-margin" formControlName="acceptTandC">Accept Terms and Conditions</mat-checkbox>
+           <mat-error *ngIf="registerForm.controls.acceptTandC.errors && registerForm.controls.acceptTandC.touched">This field is mandatory.</mat-error>
+         </div>
+
+        <div class="text-center mt-4">
+            <button mat-raised-button color="primary" (click)="onSubmit()">SIGN UP</button>&nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="onReset()">RESET</button>
+        </div>
+
+      </form>
+    
+    </div>  
+</mat-card>
+</div>
