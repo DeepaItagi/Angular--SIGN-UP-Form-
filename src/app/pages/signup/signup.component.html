@@ -135,7 +135,7 @@
             </button>
             <mat-error *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.invalid">
               <span *ngIf="registerForm.controls.confirmpassword.errors.required">This field is mandatory.</span>
-              <span *ngIf="registerForm.controls.confirmpassword.errors.pattern">Password and Confirm Password must match.</span>
+              <span *ngIf="registerForm.controls.confirmpassword.errors.pattern">Password and Confirm Password must be same.</span>
             </mat-error>
             
         </mat-form-field>
