@@ -129,12 +129,13 @@
         &nbsp;&nbsp;
         <mat-form-field appearance="fill">
             <mat-label>Confirm Password</mat-label>
-            <input matInput formControlName="confirmpassword" required [type]="hide ? 'password' : 'text'">
+            <input matInput formControlName="confirmpassword" required [type]="hide ? 'password' : 'text'" pattern="{{ registerForm.controls.password.value }}" >
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.invalid">
               <span *ngIf="registerForm.controls.confirmpassword.errors.required">This field is mandatory.</span>
+              <span *ngIf="registerForm.controls.confirmpassword.errors.pattern">Password and Confirm Password must match.</span>
             </mat-error>
             
         </mat-form-field>
